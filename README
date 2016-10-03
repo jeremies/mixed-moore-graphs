@@ -1,0 +1,73 @@
+************************************************************************************************
+EXTREMAL MIXED GRAPHS IN THE CONTEXT OF THE DEGREE/DIAMETER PROBLEM
+************************************************************************************************
+
+This is the code of the master thesis "Extremal mixed graphs in the context of the Degree/Diameter problem".
+Its objective is to search mixed Moore and mixed almost Moore graphs, or to prove the non existence of it. 
+
+Directories:
+	* glucose-3.0.nosinc: Glucose SAT solver
+	* minisat+: Minisat+ Pseudo-Boolean to CNF translator
+	* predetermined-entries: predetermined entries of the adjacency matrix
+
+Files:
+	* mixed0.py
+	* predetermined.py
+	* predetermined.sh: a script to execute predetermined.py
+
+==================
+mixed0.py
+==================
+
+A Python program that writes the Pseudo-Boolean encoding of the mixed Moore and mixed almost Moore graphs problem and calls Minisat+ and Glucose to solve it. To execute we use Sage for the arbitrary-precision arithmetic used to write the Pseudo-Boolean encoding.
+
+COMPILATION OF MINISAT+ AND GLUCOSE:
+Precompiled binaries of minisat+ and Glucose for Linux are included. To compile find more information at the directories of the programs.
+
+TO EXECUTE:
+sage mixed0.py
+
+INPUT:
+
+	- n: the order of the graph
+
+	- almost: almost=0: search mixed Moore graphs, almost=1: search mixed almost Moore graphs
+	 
+	- lex: lex=0: no symmetry break, lex=1: lexicographic symmetry break
+	 
+	- closed: closed=0: don't close some directed cycles, closed=1: close some directed cycles (in mixed Moore graphs case closed=0 and lex=1 implies lexicographic symmetry break L_1 and closed=1 and lex=1 implies lexicographic symmetry break L_2)
+	 
+	- suffix: a positive integer added at the end of output files. 
+	 
+	- more: more=0: don't configure more options, more=1: to configure more options
+	 
+	- sols: sols=1: search for the first solution found, sols=0: search all solutions
+
+
+==================
+predetermined.py
+==================
+
+A Python program that returns the predetermined entries of the adjacency matrix for the mixed Moore and mixed almost Moore graphs problem.
+
+TO EXECUTE:
+python predetermined.py
+
+INPUT:
+
+	- n: the order of the graph
+
+	- almost: almost=0: search mixed Moore graphs, almost=1: search mixed almost Moore graphs
+	 
+	- closed: closed=0: don't close some directed cycles, closed=1: close some directed cycles (in mixed Moore graphs case closed=0 and lex=1 implies lexicographic symmetry break L_1 and closed=1 and lex=1 implies lexicographic symmetry break L_2)
+	 
+	- repeat: a number in the interval [0,1,2,3]. Four different cases to consider for finding mixed almost Moore graphs (see Section 4.3.2 of the thesis). For mixed Moore graphs use repeat=0.
+
+==================
+predetermined.sh
+==================
+
+A script that executes predetermined.py for all the orders of the graphs needed and writes the filled matrices in predetermined-entries folder.
+
+TO EXECUTE:
+bash predetermined.sh
